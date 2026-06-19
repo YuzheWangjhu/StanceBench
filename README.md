@@ -17,25 +17,29 @@ The benchmark covers nine interpersonal stance dimensions:
 ## Repository Layout
 
 ```text
-metadata/
-  questions_main.json              # stance question definitions
-  category_roles.csv               # role/category mapping
-  interactions_role_ABmapped.csv   # StanceBench conversation metadata
-scripts/
-  filter_roles.py                  # select benchmark rows by stance roles
-  select_one_question.py           # extract one stance question config
-  turnover_extractor_IPU.py        # extract speaker IPUs from dyad audio
-  build_eval_inputs.py             # build single/interaction eval clips
-models/
-  qwen_omni/                       # Qwen2.5-Omni audio judge
-  kimi_audio/                      # Kimi-Audio judge
-  granite_speech/                  # Granite Speech transcript baseline
-  gpt_audio/                       # GPT audio judge
-  gemini_audio/                    # Gemini audio judge
-  qwen_transcript_ablation/        # Qwen transcript-only ablation
-notebooks/
+stancebench/
+  metadata/
+    questions_main.json            # stance question definitions
+    category_roles.csv             # role/category mapping
+    interactions_role_ABmapped.csv # StanceBench conversation metadata
+  scripts/
+    filter_roles.py                # select benchmark rows by stance roles
+    select_one_question.py         # extract one stance question config
+    turnover_extractor_IPU.py      # extract speaker IPUs from dyad audio
+    build_eval_inputs.py           # build single/interaction eval clips
+  models/
+    qwen_omni/                     # Qwen2.5-Omni audio judge
+    kimi_audio/                    # Kimi-Audio judge
+    granite_speech/                # Granite Speech transcript baseline
+    gpt_audio/                     # GPT audio judge
+    gemini_audio/                  # Gemini audio judge
+    qwen_transcript_ablation/      # Qwen transcript-only ablation
+examples/notebooks/
   analyze_all_paper.ipynb          # analysis notebook for generated results
 ```
+
+Top-level `scripts/`, `models/`, and `metadata/` paths are kept as compatibility
+entrypoints for older commands. New usage should prefer the `stancebench/` paths.
 
 ## Data
 
@@ -56,7 +60,7 @@ export SEAMLESS_DYAD_LOOKUP_CSV=/path/to/seamless_interaction/datasets/assets/dy
 By default, the pipeline uses:
 
 ```bash
-metadata/interactions_role_ABmapped.csv
+stancebench/metadata/interactions_role_ABmapped.csv
 ```
 
 To use a different StanceBench metadata file:
@@ -99,8 +103,8 @@ Each stance dimension is run with a one-question config and the matching input m
 Create a question config for `S0`:
 
 ```bash
-python scripts/select_one_question.py \
-  --input metadata/questions_main.json \
+python stancebench/scripts/select_one_question.py \
+  --input stancebench/metadata/questions_main.json \
   --index 0 \
   --output question_0.json
 ```
@@ -108,7 +112,7 @@ python scripts/select_one_question.py \
 Run Qwen2.5-Omni on `S0`:
 
 ```bash
-python models/qwen_omni/run_turnover_qwen_QA.py \
+python stancebench/models/qwen_omni/run_turnover_qwen_QA.py \
   --roles-of-interest Friendly Warm Approachable Welcoming Aloof Distant Impersonal Indifferent \
   --question-config question_0.json \
   --filtered-csv runs_bpc_evidence/q0/filtered_subset_0.csv \
@@ -147,4 +151,4 @@ Scores are derived from two balanced prompt-order variants. Each item stores the
 
 ## Analysis
 
-Use `notebooks/analyze_all_paper.ipynb` after generating local model outputs. The notebook computes benchmark summaries such as failure rate, item disagreement, pole consistency, EER, AUROC, oracle F1, and human-correlation analyses when human-evaluation outputs are available locally.
+Use `examples/notebooks/analyze_all_paper.ipynb` after generating local model outputs. The notebook computes benchmark summaries such as failure rate, item disagreement, pole consistency, EER, AUROC, oracle F1, and human-correlation analyses when human-evaluation outputs are available locally.

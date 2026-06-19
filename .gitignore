@@ -10,6 +10,7 @@ __pycache__/
 
 # Generated benchmark artifacts
 tests/
+dev/
 runs_bpc_evidence/
 **/runs_bpc_evidence/
 **/*_full_turns/
