@@ -181,10 +181,20 @@ def cmd_metrics(args: argparse.Namespace) -> int:
     return 0
 
 
+def _analysis_notebook_path() -> Path:
+    package_root = Path(__file__).resolve().parent
+    candidates = [
+        package_root.parent / "examples/notebooks/analyze_all_paper.ipynb",
+        package_root / "examples/notebooks/analyze_all_paper.ipynb",
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+    raise SystemExit("Analysis notebook not found in source checkout or installed package data.")
+
+
 def cmd_analyze(args: argparse.Namespace) -> int:
-    notebook = Path(__file__).resolve().parents[1] / "examples/notebooks/analyze_all_paper.ipynb"
-    if not notebook.exists():
-        raise SystemExit(f"Analysis notebook not found: {notebook}")
+    notebook = _analysis_notebook_path()
     if args.runs:
         runs = args.runs
         if not runs.exists():

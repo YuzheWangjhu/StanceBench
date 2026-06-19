@@ -7,6 +7,9 @@ AGENTS.md
 *.env
 __pycache__/
 .ipynb_checkpoints/
+build/
+dist/
+*.egg-info/
 
 # Generated benchmark artifacts
 dev/

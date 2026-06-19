@@ -9,6 +9,7 @@ from pathlib import Path
 from stancebench.dimensions import DIMENSIONS, get_dimension, question_for_dimension, roles_for_dimension
 from stancebench.metrics import score_summary
 from stancebench.pipeline import discover_manifests
+from stancebench.cli import _analysis_notebook_path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -140,6 +141,9 @@ class PublicCliTests(unittest.TestCase):
             result = run_cli("analyze", "--runs", str(runs))
             self.assertIn("discovered 1 CLI run CSV", result.stdout)
             self.assertIn("analyze_all_paper.ipynb", result.stdout)
+
+    def test_analysis_notebook_packaged_path_exists(self):
+        self.assertTrue(_analysis_notebook_path().exists())
 
     def test_manifest_discovery(self):
         with tempfile.TemporaryDirectory() as d:

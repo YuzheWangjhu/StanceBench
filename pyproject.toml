@@ -22,4 +22,4 @@ stancebench = "stancebench.cli:main"
 include = ["stancebench*"]
 
 [tool.setuptools.package-data]
-stancebench = ["metadata/*.json", "metadata/*.csv"]
+stancebench = ["metadata/*.json", "metadata/*.csv", "examples/notebooks/*.ipynb"]
