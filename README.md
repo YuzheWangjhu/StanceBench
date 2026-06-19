@@ -227,7 +227,7 @@ is `stancebench run`.
 
 ## Analysis
 
-Use `examples/notebooks/analyze_all_paper.ipynb` after generating local model outputs. The notebook reads the CLI layout under `runs/<model>/<dimension>/<run_id>/legacy_filtered_subset.csv` and also supports the compatibility `runs_bpc_evidence/q*/filtered_subset_*.csv` layout. It computes benchmark summaries such as failure rate, item disagreement, pole consistency, EER, AUROC, oracle F1, and human-correlation analyses when human-evaluation outputs are available locally.
+Use `examples/notebooks/analyze_all_paper.ipynb` after generating local model outputs. The notebook reads the CLI layout under `runs/<model>/<dimension>/<run_id>/legacy_filtered_subset.csv` and also supports the compatibility `runs_bpc_evidence/q*/filtered_subset_*.csv` layout. It computes benchmark summaries such as failure rate, item disagreement, pole consistency, EER, AUROC, and oracle F1. Human-correlation reproduction is not included in this public release because the human-evaluation materials are not redistributed.
 
 To confirm that generated CLI outputs are visible to the analysis workflow:
 
