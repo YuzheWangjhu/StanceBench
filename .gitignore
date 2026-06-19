@@ -1,1 +1,29 @@
 paper_info/
+AGENTS.md
+
+# Local secrets and environments
+.env
+.env/
+*.env
+__pycache__/
+.ipynb_checkpoints/
+
+# Generated benchmark artifacts
+tests/
+runs_bpc_evidence/
+**/runs_bpc_evidence/
+**/*_full_turns/
+*.wav
+*.flac
+*.mp3
+*.m4a
+
+# Cluster/runtime output
+slurm_output/
+*.log
+*.out
+*.err
+
+# Local data checkouts
+data/
+seamless_interaction/

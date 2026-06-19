@@ -1,0 +1,17 @@
+numpy
+pandas
+scipy
+librosa
+soundfile
+soxr
+torch
+transformers
+accelerate
+safetensors
+peft
+matplotlib
+scikit-learn
+jupyter
+requests
+openai
+google-genai
