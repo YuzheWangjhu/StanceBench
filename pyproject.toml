@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stancebench"
+version = "0.3.0"
+description = "Benchmark and evaluation pipeline for interpersonal stance from speech."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pandas",
+  "soundfile",
+  "pyyaml",
+]
+
+[project.scripts]
+stancebench = "stancebench.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["stancebench*"]
+
+[tool.setuptools.package-data]
+stancebench = ["metadata/*.json", "metadata/*.csv"]

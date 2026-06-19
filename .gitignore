@@ -9,8 +9,9 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Generated benchmark artifacts
-tests/
 dev/
+runs/
+tests/artifacts/
 runs_bpc_evidence/
 **/runs_bpc_evidence/
 **/*_full_turns/
